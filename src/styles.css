@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+.margin-top {
+    margin-top: 80px;
+}
+
+.margin-top-home {
+    margin-top: 50px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn-warning {
+    margin: 0 0px 0 5px !important;
+}
