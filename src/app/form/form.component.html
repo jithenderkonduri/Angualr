@@ -1,36 +1,49 @@
 <div class="container margin-top">
-    <form>
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <h5 *ngIf="success">Your form is valid!</h5>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">{{name}}:</label>
-                    <input type="text" class="form-control" id="" placeholder="Enter Your Name" value="">
+                    <input type="text" formControlName="name" class="form-control" id="" placeholder="Enter Your Name" value="">
+                    <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+                        <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
                 <div class="form-group">
-                    <label for="exampleInputPassword1">{{subject}}:</label>
-                    <input type="text" class="form-control" id="" placeholder="Enter Your Subject" value="">
+                    <label for="subject">{{subject}}:</label>
+                    <input type="text" formControlName="subject" class="form-control" id="" placeholder="Enter Your Subject" value="">
+                    <div *ngIf="submitted && messageForm.controls.subject.errors" class="error">
+                        <div *ngIf="messageForm.controls.subject.errors.required">Your subject is required</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
                 <div class="form-group">
-                    <label for="exampleInputPassword1">{{password}}:</label>
-                    <input type="password" class="form-control" id="" placeholder="Enter Your Password" value="">
+                    <label for="email">{{email}}:</label>
+                    <input type="email" formControlName="email" class="form-control" id="" placeholder="Enter Your Email" value="">
+                    <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
+                        <div *ngIf="messageForm.controls.email.errors.required">Your email is required</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">{{email}}:</label>
-                    <input type="email" class="form-control" id="" placeholder="Enter Your Email" value="">
-                </div>
+                <!-- <div class="form-group">
+                    <label for="password">{{password}}:</label>
+                    <input type="password" formControlName="password" class="form-control" id="" placeholder="Enter Your Password" value="">
+                </div>-->
             </div>
             <div class="col-md-12">
                 <div class="btn-group">
-                    <a href="" class="btn btn-primary">Submit</a>
+                    <input type="submit" value="Send message" class="btn btn-primary">
+
                     <a routerLink="/" class="btn btn-warning">Cancel</a>
                 </div>
             </div>
         </div>
     </form>
+    <div *ngIf="submitted" class="results">
+        <strong>{{name}}:</strong>
+        <span>{{ messageForm.controls.name.value }}</span>
+        <strong>{{subject}}:</strong>
+        <span>{{ messageForm.controls.subject.value }}</span>
+        <strong>{{email}}:</strong>
+        <span>{{ messageForm.controls.email.value }}</span>
+    </div>
 </div>
